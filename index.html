@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#05070d">
+<meta property="og:title" content="AVENGERS: ENDGAME — Countdown">
+<meta property="og:description" content="The final watch. 26 September 2026 • 10:46 PM IST">
+<title>AVENGERS: ENDGAME — Countdown</title>
+<style>
+:root{--red:#ff304f;--gold:#ffd166;--cyan:#8be9fd;--bg:#03050a}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);font-family:Inter,Segoe UI,Arial,sans-serif;color:#fff}
+body{
+  display:grid;place-items:center;position:relative;
+  background:
+    radial-gradient(circle at 50% 45%,rgba(255,50,75,.18),transparent 24%),
+    radial-gradient(circle at 20% 80%,rgba(70,130,255,.13),transparent 28%),
+    linear-gradient(135deg,#020308 0%,#090d18 50%,#020308 100%);
+}
+body:before{
+  content:"";position:absolute;inset:-20%;
+  background:
+    radial-gradient(circle at 15% 25%,rgba(255,255,255,.8) 0 1px,transparent 2px),
+    radial-gradient(circle at 75% 15%,rgba(255,255,255,.55) 0 1px,transparent 2px),
+    radial-gradient(circle at 40% 75%,rgba(255,255,255,.55) 0 1px,transparent 2px),
+    radial-gradient(circle at 85% 70%,rgba(255,255,255,.7) 0 1px,transparent 2px);
+  background-size:240px 210px,310px 260px,280px 240px,360px 300px;
+  opacity:.55;animation:drift 35s linear infinite;pointer-events:none
+}
+body:after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,rgba(0,0,0,.55),transparent 25%,transparent 75%,rgba(0,0,0,.55)),
+             linear-gradient(0deg,rgba(0,0,0,.7),transparent 35%,transparent 65%,rgba(0,0,0,.55))
+}
+@keyframes drift{to{transform:translate3d(4%,2%,0) scale(1.04)}}
+.wrap{position:relative;z-index:2;width:min(1100px,94vw);text-align:center}
+.badge{display:inline-block;border:1px solid rgba(255,255,255,.25);padding:8px 15px;border-radius:999px;letter-spacing:.24em;font-size:11px;color:#cbd5e1;background:rgba(255,255,255,.05);backdrop-filter:blur(10px)}
+h1{margin:20px 0 5px;font-size:clamp(34px,7vw,82px);letter-spacing:.08em;line-height:.95;text-shadow:0 0 28px rgba(255,48,79,.35);font-weight:900}
+h1 span{color:var(--red)}
+.subtitle{font-size:clamp(13px,2vw,18px);letter-spacing:.18em;color:#cbd5e1;text-transform:uppercase}
+.date{margin:22px 0 28px;font-size:clamp(16px,2.2vw,22px);color:var(--gold);font-weight:700;letter-spacing:.08em}
+.clock{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:900px;margin:auto}
+.unit{padding:22px 12px;border:1px solid rgba(255,255,255,.16);background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.025));border-radius:18px;box-shadow:0 15px 50px rgba(0,0,0,.28),inset 0 0 30px rgba(255,255,255,.02);backdrop-filter:blur(12px)}
+.num{font-size:clamp(42px,8vw,88px);font-weight:900;line-height:1;font-variant-numeric:tabular-nums}
+.label{margin-top:10px;font-size:11px;letter-spacing:.25em;color:#94a3b8}
+.actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:24px}
+button,.share{border:1px solid rgba(255,255,255,.2);color:#fff;background:rgba(255,255,255,.08);padding:12px 18px;border-radius:12px;cursor:pointer;font-weight:700;text-decoration:none;backdrop-filter:blur(8px);transition:.2s}
+button:hover,.share:hover{transform:translateY(-2px);background:rgba(255,255,255,.14)}
+.primary{background:var(--red);border-color:var(--red)}
+.primary:hover{background:#ff4b66}
+.note{margin-top:18px;color:#94a3b8;font-size:12px}
+.pulse{animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{50%{text-shadow:0 0 32px rgba(255,48,79,.75)}}
+@media(max-width:650px){.clock{grid-template-columns:repeat(2,1fr)}.unit{padding:18px 8px}h1{letter-spacing:.04em}.date{font-size:14px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="badge">THE FINAL WATCH • INDIA</div>
+  <h1>AVENGERS: <span>ENDGAME</span></h1>
+  <div class="subtitle">One last journey. One last night. One unforgettable watch.</div>
+  <div class="date">26 SEPTEMBER 2026 • 10:46 PM IST</div>
+
+  <section class="clock" aria-label="Countdown">
+    <div class="unit"><div class="num" id="days">00</div><div class="label">DAYS</div></div>
+    <div class="unit"><div class="num" id="hours">00</div><div class="label">HOURS</div></div>
+    <div class="unit"><div class="num" id="minutes">00</div><div class="label">MINUTES</div></div>
+    <div class="unit"><div class="num pulse" id="seconds">00</div><div class="label">SECONDS</div></div>
+  </section>
+
+  <div class="actions">
+    <button class="primary" id="audioBtn">🎵 Start Soundtrack</button>
+    <a class="share" id="wa" target="_blank" rel="noopener">💬 Share on WhatsApp</a>
+    <button id="copyBtn">🔗 Copy Page Link</button>
+  </div>
+  <div class="note" id="status">Soundtrack starts only after you tap the button, because browsers block autoplay.</div>
+</main>
+
+<script>
+const target = new Date("2026-09-26T22:46:00+05:30").getTime();
+const $ = id => document.getElementById(id);
+
+function tick(){
+  let d = Math.max(0, target - Date.now());
+  const day = Math.floor(d/86400000); d%=86400000;
+  const hour = Math.floor(d/3600000); d%=3600000;
+  const min = Math.floor(d/60000); d%=60000;
+  const sec = Math.floor(d/1000);
+  $("days").textContent=String(day).padStart(2,"0");
+  $("hours").textContent=String(hour).padStart(2,"0");
+  $("minutes").textContent=String(min).padStart(2,"0");
+  $("seconds").textContent=String(sec).padStart(2,"0");
+  if(target-Date.now()<=0){
+    document.querySelector(".subtitle").textContent="IT'S TIME. ASSEMBLE.";
+    document.querySelector(".date").textContent="THE FINAL WATCH HAS BEGUN";
+  }
+}
+tick(); setInterval(tick,1000);
+
+const shareText = "⚡ AVENGERS: ENDGAME — THE FINAL WATCH ⚡\\n26 September 2026 • 10:46 PM IST\\nCountdown is live. Assemble! 🛡️";
+$("wa").href = "https://wa.me/?text="+encodeURIComponent(shareText+"\\n"+location.href);
+
+$("copyBtn").onclick = async ()=>{
+  try{
+    await navigator.clipboard.writeText(location.href);
+    $("copyBtn").textContent="✅ Link Copied";
+    setTimeout(()=>$("copyBtn").textContent="🔗 Copy Page Link",1800);
+  }catch(e){ $("status").textContent="Copy failed — copy the URL from your browser address bar."; }
+};
+
+// Lightweight original ambient soundtrack made with Web Audio API.
+// No external copyrighted audio file is used.
+let ctx, master, timer, playing=false;
+function startAudio(){
+  if(playing) return;
+  ctx = new (window.AudioContext||window.webkitAudioContext)();
+  master=ctx.createGain(); master.gain.value=.055; master.connect(ctx.destination);
+  const notes=[110,146.83,164.81,220,164.81,146.83];
+  let i=0;
+  function chord(){
+    const now=ctx.currentTime;
+    const o=ctx.createOscillator(), g=ctx.createGain();
+    o.type="sine"; o.frequency.value=notes[i++%notes.length];
+    g.gain.setValueAtTime(0,now); g.gain.linearRampToValueAtTime(.5,now+.7);
+    g.gain.exponentialRampToValueAtTime(.001,now+3.4);
+    o.connect(g).connect(master); o.start(now); o.stop(now+3.5);
+  }
+  chord(); timer=setInterval(chord,900); playing=true;
+  $("audioBtn").textContent="🔊 Soundtrack On";
+  $("status").textContent="Ambient countdown soundtrack is playing.";
+}
+$("audioBtn").onclick=startAudio;
+</script>
+</body>
+</html>
